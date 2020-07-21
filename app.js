@@ -4,7 +4,7 @@
   const bodyParser = require("body-parser");
   const app = express();
 
-  var iteams =["Buy Food","Play Game","Game"];
+  var iteams =[];
   var workiteams =[];
   app.use(express.static("public1"));
   app.use(bodyParser.urlencoded({extended: true}));
