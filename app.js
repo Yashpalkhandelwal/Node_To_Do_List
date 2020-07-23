@@ -1,51 +1,82 @@
-//jshint esversion:6
+//requring the required modules for app
+const express = require("express");
+const bodyParser = require("body-parser");
+const ejs = require("ejs");
+const date = require(__dirname + "/date.js");
 
-  const express = require("express");
-  const bodyParser = require("body-parser");
-  const app = express();
+//creating an instant of the express module
+const app = express();
 
-  var iteams =[];
-  var workiteams =[];
-  app.use(express.static("public1"));
-  app.use(bodyParser.urlencoded({extended: true}));
+//Declaring the items and workItems array
+const items = ["Buy Food", "Cook Food", "Eat Food"];
+const workItems = [];
 
-  app.set("view engine", "ejs");
+//using "use" method for body-parser and express modules
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
+app.use(express.static("public"));
 
-  app.get("/", function(req, res){
-  var today = new Date();
-  var options = {
-    weekday: "long",
-    day: "numeric",
-    month: "long"
-  };
+// Using the "set" method on app to set the view engine to ejs
+app.set('view engine', 'ejs');
 
-  var day = today.toLocaleDateString("en-US", options);
-    res.render("list", {listtile: day, newElements: iteams});
+//GET method for home route("/")
+app.get("/", function(req, res) {
+
+  let day = date.getDate();
+
+  res.render("list", {
+    listTitle: day,
+    newItemList: items
+  });
+});
+
+// GET method for root route("/del")
+app.post("/del", function(req, res) {
+const checkedIteam = req.body.checkbox;
+items.pop(checkedIteam);
+res.redirect("/");
+
+
+});
+// GET method for work route("/work")
+app.get("/work", function(req, res) {
+  res.render("list", {
+    listTitle: "Work List",
+    newItemList: workItems
+  });
+});
+
+// GET method for about route("/about")
+app.get("/about", function(req, res) {
+  res.render("about");
 });
 
 
-app.post("/",function(req, res){
-  var iteam = req.body.newiteam;
+// POST method for home route("/")
+app.post("/", function(req, res) {
 
-  if (req.body.list === "work"){
-    workiteams.push(iteam);
-    res.redirect("/work");
-  }else {
-    iteams.push(iteam)
+  const item = req.body.newItem;
+
+  if (req.body.list === "work") {
+    workItems.push(item);
+    res.redirect("/work")
+  } else {
+    items.push(item);
     res.redirect("/");
   }
 
 });
 
-app.get ("/work", function(req, res){
-  res.render("list", {listtile: "work", newElements: workiteams})
+// POST method for wrok route("/work")
+app.post("/work", function(req, res) {
+  const item = req.body.newItem;
+  workItems.push(item);
+  res.redirect("/work")
 });
 
-app.post("/work", function(req, res){
-  let iteam = req.body.newiteam;
-  workiteams.push(iteam);
-  res.redirect("/work")
-})
-app.listen(process.env.PORT  || 3000, function(){
-  console.log("Server started on port 3000.");
+
+// Spinning of server at localhost on port=3000
+app.listen(3000, function() {
+  console.log("Server is running on http://localhost:3000");
 });
