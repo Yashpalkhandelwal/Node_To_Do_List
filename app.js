@@ -8,7 +8,7 @@ const date = require(__dirname + "/date.js");
 const app = express();
 
 //Declaring the items and workItems array
-const items = ["Buy Food", "Cook Food", "Eat Food"];
+const items = [];
 const workItems = [];
 
 //using "use" method for body-parser and express modules
@@ -77,6 +77,6 @@ app.post("/work", function(req, res) {
 
 
 // Spinning of server at localhost on port=3000
-app.listen(3000, function() {
+app.listen(process.env.PORT  || 3000, function() {
   console.log("Server is running on http://localhost:3000");
 });
