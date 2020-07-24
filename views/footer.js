@@ -1,6 +1,0 @@
-</body>
-<footer>
-  copyright 2020
-</footer>
-
-</html>

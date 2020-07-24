@@ -1,8 +1,13 @@
 html {
   background-color: #E4E9FD;
-  background-image: -webkit-linear-gradient(65deg, #A683E3 50%, #E4E9FD 50%);
-  min-height: 100%;
+  background-image: -webkit-linear-gradient(65deg, #8970b3 40%, #A683E3 60%);
+
   font-family: 'helvetica neue';
+}
+body {
+  background-color: #A683E3;
+  background-image: -webkit-linear-gradient(65deg, #A683E3 40%, #E4E9FD 60%);
+
 }
 
 h1 {
@@ -22,7 +27,18 @@ h1 {
   background-color: #A683E3;
   text-align: center;
 }
-
+.navbar {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border: 0;
+    border-radius: 0;
+    margin-bottom: 0;
+    font-size: 12px;
+    letter-spacing: 5px;
+}
+.navbar-nav  li a:hover {
+    color: #A683E3 !important;
+}
 .item {
   min-height: 70px;
   display: flex;

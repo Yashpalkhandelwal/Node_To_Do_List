@@ -1,8 +1,18 @@
-<%- include('header'); -%>
+<%- include("header"); -%>
+<body>
+
+  <script>
+  function validateForm() {
+    var x = document.forms["myForm"]["newItem"].value;
+    if (x == "" || x == null) {
+      alert("Name must be filled out");
+      return false;
+    }
+  }
+  </script>
 <div class="box" id="heading">
   <h1><%= listTitle %> !</h1>
 </div>
-
 <div class="box">
   <% for(var i=0;i<newItemList.length;i++) { %>
     <form action="/del" method="post">
@@ -13,9 +23,11 @@
     </form>
   <% } %>
 
-  <form class="item" action="/" method="post">
+  <form class="item" action="/" method="post" onsubmit="return validateForm()" name="myForm">
     <input type="text" placeholder="New Item" name="newItem" autocomplete="off">
     <button type="submit" name="list" value=<%= listTitle %>>+</button>
   </form>
 </div>
-<%- include('footer'); -%>
+
+</body>
+<%- include("footer"); -%>
