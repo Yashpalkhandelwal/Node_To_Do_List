@@ -1,13 +1,8 @@
 html {
   background-color: #E4E9FD;
-  background-image: -webkit-linear-gradient(65deg, #8970b3 40%, #A683E3 60%);
-
+  background-image: -webkit-linear-gradient(65deg, #A683E3 50%, #E4E9FD 50%);
+  height: 100%;
   font-family: 'helvetica neue';
-}
-body {
-  background-color: #A683E3;
-  background-image: -webkit-linear-gradient(65deg, #A683E3 40%, #E4E9FD 60%);
-
 }
 
 h1 {
@@ -35,9 +30,27 @@ h1 {
     margin-bottom: 0;
     font-size: 12px;
     letter-spacing: 5px;
+    background-color: white;
+    margin: 0;
+
 }
 .navbar-nav  li a:hover {
     color: #A683E3 !important;
+}
+.container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.nav {
+  display: flex;
+  justify-content: space-evenly;
+  margin: : 20px;
+}
+
+.nav ul li {
+  text-decoration: none;
+  font-size: 30px;
 }
 .item {
   min-height: 70px;
@@ -109,4 +122,11 @@ footer {
   color: white;
   color: rgba(0, 0, 0, 0.5);
   text-align: center;
+}
+
+.newlist {
+  text-align: right;
+  font-size: 20px;
+  align-items: center;
+  color: #A683E3;
 }
